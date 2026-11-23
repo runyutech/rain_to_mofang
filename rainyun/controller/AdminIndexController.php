@@ -182,6 +182,36 @@ class AdminIndexController extends PluginAdminBaseController
         return $apiName !== "" ? $apiName : $this->getSubmittedRegionName($region, $line, $submitted);
     }
 
+    /**
+     * 查找其他同区域/线路商品所在的分组，避免重复创建分组。
+     * 分组名称可能被客户修改，因此不按分组名查询，而是根据商品对应套餐的区域/线路
+     * （套餐已不在接口列表中时，退化为按同步生成的商品名称前缀）判断。
+     */
+    private function findProductGroupIdByRegion(array $products, array $plans, $region, $line, $regionName = "")
+    {
+        $region = (string)$region;
+        $line = (string)$line;
+        foreach ($products as $planId => $product){
+            $plan = $plans[$planId] ?? null;
+            if(is_array($plan)
+                && (string)($plan["region"] ?? "") === $region
+                && (string)($plan["line"] ?? "") === $line
+                && !empty($product["gid"])){
+                return (int)$product["gid"];
+            }
+        }
+        $prefix = trim((string)$regionName);
+        if($prefix !== ""){
+            $prefix .= " ";
+            foreach ($products as $product){
+                if(!empty($product["gid"]) && strpos((string)($product["name"] ?? ""), $prefix) === 0){
+                    return (int)$product["gid"];
+                }
+            }
+        }
+        return 0;
+    }
+
     private function getRegionIpTypeLabel($region, $ipType, array $regionList)
     {
         $ipTypes = $regionList["ip_type"] ?? [];
@@ -755,15 +785,12 @@ class AdminIndexController extends PluginAdminBaseController
                             }
                         } 
                         $region_name = $this->getRegionDisplayName($this_region, $plan[$item]["line"], $region_list, $region_names);
-                        // 同名同父分组已存在时直接复用，避免同区域重复创建分组
-                        $existing_group = Db::name('product_groups')
-                            ->where('name', $region_name)
-                            ->where('gid', $firstgid)
-                            ->where('type', 1)
-                            ->order('id', 'asc')
-                            ->find();
-                        if($existing_group){
-                            $gid = $existing_group["id"];
+                        // 复用其他同区域/线路商品所在的分组（分组名可能被客户修改，不能按名称查询）
+                        $existing_gid = $this->findProductGroupIdByRegion($products, $plan, $this_region, $plan[$item]["line"], $region_name);
+                        if($existing_gid > 0){
+                            $gid = $existing_gid;
+                            $existing_group = Db::name('product_groups')->where('id', $gid)->find();
+                            if($existing_group) $firstgid = $existing_group['gid'];
                         }else{
                             $product_groups = [
                                     "name"=>$region_name,
@@ -2344,15 +2371,12 @@ class AdminIndexController extends PluginAdminBaseController
                             }
                         } 
                         $region_name = $this->getRegionDisplayName($this_region, $plan[$item]["line"], $region_list, $region_names);
-                        // 同名同父分组已存在时直接复用，避免同区域重复创建分组
-                        $existing_group = Db::name('product_groups')
-                            ->where('name', $region_name)
-                            ->where('gid', $firstgid)
-                            ->where('type', 1)
-                            ->order('id', 'asc')
-                            ->find();
-                        if($existing_group){
-                            $gid = $existing_group["id"];
+                        // 复用其他同区域/线路商品所在的分组（分组名可能被客户修改，不能按名称查询）
+                        $existing_gid = $this->findProductGroupIdByRegion($products, $plan, $this_region, $plan[$item]["line"], $region_name);
+                        if($existing_gid > 0){
+                            $gid = $existing_gid;
+                            $existing_group = Db::name('product_groups')->where('id', $gid)->find();
+                            if($existing_group) $firstgid = $existing_group['gid'];
                         }else{
                             $product_groups = [
                                     "name"=>$region_name,
@@ -3526,15 +3550,12 @@ class AdminIndexController extends PluginAdminBaseController
                             }
                         } 
                         $region_name = $this->getRegionDisplayName($this_region, $plan[$item]["line"], $region_list, $region_names);
-                        // 同名同父分组已存在时直接复用，避免同区域重复创建分组
-                        $existing_group = Db::name('product_groups')
-                            ->where('name', $region_name)
-                            ->where('gid', $firstgid)
-                            ->where('type', 1)
-                            ->order('id', 'asc')
-                            ->find();
-                        if($existing_group){
-                            $gid = $existing_group["id"];
+                        // 复用其他同区域/线路商品所在的分组（分组名可能被客户修改，不能按名称查询）
+                        $existing_gid = $this->findProductGroupIdByRegion($products, $plan, $this_region, $plan[$item]["line"], $region_name);
+                        if($existing_gid > 0){
+                            $gid = $existing_gid;
+                            $existing_group = Db::name('product_groups')->where('id', $gid)->find();
+                            if($existing_group) $firstgid = $existing_group['gid'];
                         }else{
                             $product_groups = [
                                     "name"=>$region_name,

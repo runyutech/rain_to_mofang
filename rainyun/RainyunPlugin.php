@@ -36,7 +36,7 @@ class RainyunPlugin extends Plugin
         'description' => '对接雨云产品',
         'status'      => 1,
         'author'      => '雨云',
-        'version'     => '1.1',
+        'version'     => '1.2',
         'module'      => 'addons',
         'lang'        => [ 
             'chinese' => '雨云产品对接', 

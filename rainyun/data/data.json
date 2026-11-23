@@ -158,7 +158,8 @@
     "windows": 4,
     "rocky_linux": 5,
     "alpine_linux": 6,
-    "mac_o_s": 7
+    "mac_o_s": 7,
+    "proxmox": 8
   },
   "RbmCpuInfo": {
     "2650Lv3": {
