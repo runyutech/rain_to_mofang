@@ -98,6 +98,7 @@
                 $('.row-checkbox').prop('checked', $(this).is(':checked'));
             });
             var operationRunning = false;
+            var syncFinished = false;
             var preflightDone = false;
             var navigationLoaded = false;
             var navigationRequired = false;
@@ -279,6 +280,8 @@
                     if(offset >= selectedIds.length) {
                         updateProgress(selectedIds.length, '全部完成：' + selectedIds.length + '/' + selectedIds.length);
                         operationRunning = false;
+                        syncFinished = true;
+                        $('#confirm_operation').prop('disabled', false).text('刷新');
                         $('#operation-result').removeClass('text-danger').addClass('text-success')
                             .text(navigationWarning ? '操作完成，但有商品未加入所选导航。' : '操作完成');
                         return;
@@ -341,6 +344,7 @@
                 $('#unknown-region-inputs').empty().hide();
                 $('#operation-progress').hide();
                 $('#operation-result').removeClass('text-danger text-success').text('');
+                syncFinished = false;
                 $('#confirm_operation').prop('disabled', false).text('确定');
                 navigationRequired = needsNavigation(getCheckedPlanIds());
                 $('#navigation-option-group').toggle(navigationRequired);
@@ -352,6 +356,10 @@
 
             $('#confirm_operation').click(function() {
                 if(operationRunning) return;
+                if(syncFinished) {
+                    window.location.reload();
+                    return;
+                }
                 if(navigationRequired && !navigationLoaded) loadNavigation();
                 if(!validateNavigationSelection()) return;
                 if(preflightDone) {

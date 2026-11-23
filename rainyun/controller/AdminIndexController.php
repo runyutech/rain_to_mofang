@@ -224,6 +224,7 @@ class AdminIndexController extends PluginAdminBaseController
             "cn-sy1" => $line === "bgp" ? "sy_bgpip" : "",
             "cn-nb1" => $line === "bgp" ? "nb_bgpip" : "",
             "cn-sz1" => $line === "bgp" ? "sz_txip" : "",
+            "cn-sx1" => $line === "bgp" ? "sx_bgpip" : "",
         ];
         $candidate = $legacyMap[$region] ?? "";
         if($candidate !== "" && array_key_exists($candidate, $ipPrices)) return $candidate;
@@ -714,8 +715,10 @@ class AdminIndexController extends PluginAdminBaseController
                     $data = ["code"=>200,"msg"=>"操作完成"];
                 }else{
                     $samegid = [];
+                    $gid = 0;
+                    $firstgid = 0;
                     foreach ($plan as $key=>$value){
-                        if($value['region'] == $this_region && $value['line'] == $plan[$item]["line"]){
+                        if($value['region'] == $this_region && $value['line'] == $plan[$item]["line"] && isset($products[$key])){
                             $samepid = $products[$key]["id"];
                             $gid = $products[$key]["gid"];
                             break;
@@ -752,15 +755,26 @@ class AdminIndexController extends PluginAdminBaseController
                             }
                         } 
                         $region_name = $this->getRegionDisplayName($this_region, $plan[$item]["line"], $region_list, $region_names);
-                        $product_groups = [
-                                "name"=>$region_name,
-                                "type"=>1,
-                                "create_time"=>time(),
-                                "update_time"=>time(),
-                                "gid"=>$firstgid,
-                                "tpl_type"=>"default",
-                            ];
-                        $gid = Db::name('product_groups')->insertGetId($product_groups);
+                        // 同名同父分组已存在时直接复用，避免同区域重复创建分组
+                        $existing_group = Db::name('product_groups')
+                            ->where('name', $region_name)
+                            ->where('gid', $firstgid)
+                            ->where('type', 1)
+                            ->order('id', 'asc')
+                            ->find();
+                        if($existing_group){
+                            $gid = $existing_group["id"];
+                        }else{
+                            $product_groups = [
+                                    "name"=>$region_name,
+                                    "type"=>1,
+                                    "create_time"=>time(),
+                                    "update_time"=>time(),
+                                    "gid"=>$firstgid,
+                                    "tpl_type"=>"default",
+                                ];
+                            $gid = Db::name('product_groups')->insertGetId($product_groups);
+                        }
                     }else{
                         $result = Db::name('product_groups')
                             ->where('id', $gid)
@@ -2290,8 +2304,10 @@ class AdminIndexController extends PluginAdminBaseController
                 }else{
                     if($plan[$item]["subtype"] == "mcsm") continue;
                     $samegid = [];
+                    $gid = 0;
+                    $firstgid = 0;
                     foreach ($plan as $key=>$value){
-                        if($value['region'] == $this_region && $value['line'] == $plan[$item]["line"]){
+                        if($value['region'] == $this_region && $value['line'] == $plan[$item]["line"] && isset($products[$key])){
                             $samepid = $products[$key]["id"];
                             $gid = $products[$key]["gid"];
                             break;
@@ -2328,15 +2344,26 @@ class AdminIndexController extends PluginAdminBaseController
                             }
                         } 
                         $region_name = $this->getRegionDisplayName($this_region, $plan[$item]["line"], $region_list, $region_names);
-                        $product_groups = [
-                                "name"=>$region_name,
-                                "type"=>1,
-                                "create_time"=>time(),
-                                "update_time"=>time(),
-                                "gid"=>$firstgid,
-                                "tpl_type"=>"default",
-                            ];
-                        $gid = Db::name('product_groups')->insertGetId($product_groups);
+                        // 同名同父分组已存在时直接复用，避免同区域重复创建分组
+                        $existing_group = Db::name('product_groups')
+                            ->where('name', $region_name)
+                            ->where('gid', $firstgid)
+                            ->where('type', 1)
+                            ->order('id', 'asc')
+                            ->find();
+                        if($existing_group){
+                            $gid = $existing_group["id"];
+                        }else{
+                            $product_groups = [
+                                    "name"=>$region_name,
+                                    "type"=>1,
+                                    "create_time"=>time(),
+                                    "update_time"=>time(),
+                                    "gid"=>$firstgid,
+                                    "tpl_type"=>"default",
+                                ];
+                            $gid = Db::name('product_groups')->insertGetId($product_groups);
+                        }
                     }else{
                         $result = Db::name('product_groups')
                             ->where('id', $gid)
@@ -3459,6 +3486,8 @@ class AdminIndexController extends PluginAdminBaseController
                 }else{
                     if(!$plan[$item]["is_selling"]) continue;
                     $samegid = [];
+                    $gid = 0;
+                    $firstgid = 0;
                     foreach ($plan as $key=>$value){
                         if($value['region'] == $this_region && $value['line'] == $plan[$item]["line"] && isset($products[$key])){
                             $samepid = $products[$key]["id"];
@@ -3497,15 +3526,26 @@ class AdminIndexController extends PluginAdminBaseController
                             }
                         } 
                         $region_name = $this->getRegionDisplayName($this_region, $plan[$item]["line"], $region_list, $region_names);
-                        $product_groups = [
-                                "name"=>$region_name,
-                                "type"=>1,
-                                "create_time"=>time(),
-                                "update_time"=>time(),
-                                "gid"=>$firstgid,
-                                "tpl_type"=>"default",
-                            ];
-                        $gid = Db::name('product_groups')->insertGetId($product_groups);
+                        // 同名同父分组已存在时直接复用，避免同区域重复创建分组
+                        $existing_group = Db::name('product_groups')
+                            ->where('name', $region_name)
+                            ->where('gid', $firstgid)
+                            ->where('type', 1)
+                            ->order('id', 'asc')
+                            ->find();
+                        if($existing_group){
+                            $gid = $existing_group["id"];
+                        }else{
+                            $product_groups = [
+                                    "name"=>$region_name,
+                                    "type"=>1,
+                                    "create_time"=>time(),
+                                    "update_time"=>time(),
+                                    "gid"=>$firstgid,
+                                    "tpl_type"=>"default",
+                                ];
+                            $gid = Db::name('product_groups')->insertGetId($product_groups);
+                        }
                     }else{
                         $result = Db::name('product_groups')
                             ->where('id', $gid)
