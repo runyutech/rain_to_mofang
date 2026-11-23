@@ -68,8 +68,6 @@
     }
   },
   "auto_white": {
-    "us-la1": false,
-    "us-la2": false,
     "cn-hk1": false,
     "cn-nb1": false,
     "cn-sy1": false,
@@ -78,12 +76,9 @@
     "cn-cq1": false,
     "cn-xy1": false,
     "cn-zj1": false,
-    "jp-tk1": false,
     "cn-sz1": true,
     "cn-wz1": false,
-    "cn-sx1": false,
-    "kr-st1": false,
-    "de-ff1": false
+    "cn-sx1": false
   },
   "white": "大陆产品进行http业务前需要对域名进行备案后在上方添加过白（深圳区域可自动过白），湖北十堰区域需填写服务器 IP 和用途；绍兴、镇江区域域名过白需发起工单进行申请",
   "is_truename": {
