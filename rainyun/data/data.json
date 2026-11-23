@@ -1,0 +1,402 @@
+{
+  "name": {
+    "us-la1": {
+      "": "美国洛杉矶一区"
+    },
+    "us-la2": {
+      "": "美国洛杉矶二区"
+    },
+    "cn-hk1": {
+      "": "中国香港",
+      "opt": "香港二区",
+      "3c": "香港三区",
+      "iij": "香港四区",
+      "global": "香港五区"
+    },
+    "cn-nb1": {
+      "": "浙江宁波",
+      "single": "浙江宁波单线/多线",
+      "bgp": "浙江宁波BGP"
+    },
+    "cn-sy1": {
+      "": "湖北十堰",
+      "single": "湖北十堰电信",
+      "bgp": "湖北十堰三线BGP"
+    },
+    "cn-sq1": {
+      "": "江苏宿迁"
+    },
+    "cn-gz1": {
+      "": "广东广州"
+    },
+    "cn-cq1": {
+      "": "重庆电信"
+    },
+    "cn-xy1": {
+      "": "湖北襄阳"
+    },
+    "cn-zj1": {
+      "": "江苏镇江"
+    },
+    "jp-tk1": {
+      "": "日本东京",
+      "3c": "日本东京一区",
+      "sb": "日本东京二区"
+    },
+    "cn-sz1": {
+      "": "广东深圳",
+      "single": "广东深圳电信",
+      "bgp": "广东深圳腾讯BGP"
+    },
+    "cn-wz1": {
+      "": "浙江温州",
+      "single": "浙江温州电信/多线",
+      "bgp": "浙江温州BGP"
+    },
+    "cn-sx1": {
+      "": "浙江绍兴",
+      "bgp": "浙江绍兴三线BGP"
+    },
+    "kr-st1": {
+      "": "韩国首尔",
+      "3c": "韩国首尔一区",
+      "global": "韩国首尔二区"
+    },
+    "de-ff1": {
+      "9929": "德国法兰克福一区",
+      "": "德国法兰克福"
+    }
+  },
+  "auto_white": {
+    "us-la1": false,
+    "us-la2": false,
+    "cn-hk1": false,
+    "cn-nb1": false,
+    "cn-sy1": false,
+    "cn-sq1": false,
+    "cn-gz1": false,
+    "cn-cq1": false,
+    "cn-xy1": false,
+    "cn-zj1": false,
+    "jp-tk1": false,
+    "cn-sz1": true,
+    "cn-wz1": false,
+    "cn-sx1": false,
+    "kr-st1": false,
+    "de-ff1": false
+  },
+  "white": "大陆产品进行http业务前需要对域名进行备案后在上方添加过白（深圳区域可自动过白），湖北十堰区域需填写服务器 IP 和用途；绍兴、镇江区域域名过白需发起工单进行申请",
+  "is_truename": {
+    "us-la1": false,
+    "us-la2": false,
+    "cn-hk1": false,
+    "cn-nb1": true,
+    "cn-sy1": true,
+    "cn-sq1": true,
+    "cn-gz1": true,
+    "cn-cq1": true,
+    "cn-xy1": true,
+    "cn-zj1": true,
+    "jp-tk1": false,
+    "cn-sz1": true,
+    "cn-wz1": true,
+    "cn-sx1": true,
+    "kr-st1": false,
+    "de-ff1": false
+  },
+  "ip_n": {
+    "us-la1": 3,
+    "us-la2": 3,
+    "cn-hk1": 3,
+    "cn-nb1": 3,
+    "cn-sy1": 3,
+    "cn-sq1": 2,
+    "cn-gz1": 3,
+    "cn-cq1": 2,
+    "cn-xy1": 3,
+    "cn-zj1": 1,
+    "jp-tk1": 3,
+    "cn-sz1": 3,
+    "cn-wz1": 2,
+    "cn-sx1": 2,
+    "kr-st1": 3,
+    "de-ff1": 2
+  },
+  "nat": {
+    "us-la1": false,
+    "us-la2": false,
+    "cn-hk1": false,
+    "cn-nb1": false,
+    "cn-sy1": false,
+    "cn-sq1": true,
+    "cn-gz1": false,
+    "cn-cq1": true,
+    "cn-xy1": false,
+    "cn-zj1": false,
+    "jp-tk1": false,
+    "cn-sz1": false,
+    "cn-wz1": false,
+    "cn-sx1": false,
+    "kr-st1": false,
+    "de-ff1": false
+  },
+  "machine": {
+    "E5v2": "Xeon®E5v2",
+    "E5v3": "Xeon®E5v3",
+    "E5v4": "Xeon®E5v4",
+    "G6v1": "Xeon®Gold",
+    "G6v2": "Xeon®Gold",
+    "G6P40": "Tesla P40",
+    "P8v2": "Xeon®Platinum",
+    "EPYCv2": "AMD®EPYC",
+    "EPYCv3": "AMD®EPYC",
+    "EPYCV100": "Tesla V100"
+  },
+  "subtype": {
+    "kvm": "VPS 服务器",
+    "k8s_panel": "RGP面板",
+    "mcsm": "MCSM面板",
+    "ptero": "翼龙面板"
+  },
+  "OsOrder": {
+    "debian": 1,
+    "ubuntu": 2,
+    "centos": 3,
+    "windows": 4,
+    "rocky_linux": 5,
+    "alpine_linux": 6,
+    "mac_o_s": 7
+  },
+  "RbmCpuInfo": {
+    "2650Lv3": {
+      "name": "E5-2650Lv3@2.2GHz",
+      "memory_type": "DDR4"
+    },
+    "2650v3": {
+      "name": "E5-2650v3@2.9GHz",
+      "memory_type": "DDR4"
+    },
+    "2650v4": {
+      "name": "E5-2650v4@2.9GHz",
+      "memory_type": "DDR4"
+    },
+    "2680v4": {
+      "name": "E5-2680v4@3.3GHz⚡",
+      "memory_type": "DDR4"
+    },
+    "14700hx": {
+      "name": "Max 6.0Ghz⚡",
+      "memory_type": "DDR5"
+    },
+    "1270v5": {
+      "name": "E3-1270v5@3.5GHz⚡",
+      "memory_type": "DDR4"
+    },
+    "P8160": {
+      "name": "Platinum 8160",
+      "memory_type": "DDR4"
+    },
+    "P8180": {
+      "name": "Platinum 8180",
+      "memory_type": "DDR4"
+    },
+    "EPYC7k62": {
+      "name": "EPYC 7K62",
+      "memory_type": "DDR4"
+    },
+    "P8259cl": {
+      "name": "Platinum 8259CL",
+      "memory_type": "DDR4"
+    },
+    "G6252": {
+      "name": "Gold 6252",
+      "memory_type": "DDR4"
+    },
+    "14900ks": {
+      "name": "i9-14900KS@6.2GHz⚡",
+      "memory_type": "DDR5"
+    },
+    "14900k": {
+      "name": "i9-14900K@6.0GHz⚡",
+      "memory_type": "DDR5"
+    },
+    "14900hx": {
+      "name": "i9-14900HX@5.8GHz⚡",
+      "memory_type": "DDR5"
+    },
+    "8745hs": {
+      "name": "Ryzen 7 8745HS@4.9GHz⚡",
+      "memory_type": "DDR5"
+    },
+    "macmini-m4-16g": {
+      "name": "Apple M4",
+      "memory_type": "LPDDR5"
+    },
+    "macmini-m4-32g": {
+      "name": "Apple M4",
+      "memory_type": "LPDDR5"
+    }
+  },
+  "Rbm_machine": {
+    "1270v5": "E3 轻量型",
+    "generic": "E5 通用型",
+    "generic_p": "铂+金 专业型",
+    "generic_epyc": "EPYC 专业型",
+    "game": "Intel 超频游戏型",
+    "game_amd8000": "AMD 游戏型",
+    "macmini": "Mac Mini",
+    "rhs": "云托管"
+  },
+  "Rgs_machine": {
+    "9950X": {
+      "name": "✨Ryzen 9950X",
+      "cpuFreqHz": "⚡5.8Ghz",
+      "cpuZScore": "800-900分",
+      "info": "全网首发，单核+全核性能之王【Zen5架构】<br>适用于1.20+/模组/基岩/群组等高消耗场景"
+    },
+    "14900KS": {
+      "name": "i9 14900KS",
+      "cpuFreqHz": "⚡6.2Ghz",
+      "cpuZScore": "880-1000分",
+      "info": "14代P核特挑超频方案<br>适用于1.20+/模组/基岩/群组等高消耗场景"
+    },
+    "14900K": {
+      "name": "i9 14900K",
+      "cpuFreqHz": "⚡6.0Ghz",
+      "cpuZScore": "720-850分",
+      "info": "14代P核超频方案<br>适用于1.20+/模组/基岩/群组等高消耗场景"
+    },
+    "3495X": {
+      "name": "✨W9-3495X",
+      "cpuFreqHz": "4.8Ghz",
+      "cpuZScore": "620-700分",
+      "info": "Intel高主频工作站机型，单核追平7950X<br>适用于1.20+/模组/基岩/群组等高消耗场景"
+    },
+    "G6146": {
+      "name": "Gold 6146",
+      "cpuFreqHz": "4.2Ghz",
+      "cpuZScore": "400-430分",
+      "info": "中高性能，中小服的性价比之选<br>适用于1.16+纯净服务器"
+    },
+    "7950X": {
+      "name": "Ryzen 7950X",
+      "cpuFreqHz": "⚡5.7Ghz",
+      "cpuZScore": "620-750分",
+      "info": "高主频的性价比之选<br>适用于1.18+/模组/基岩/群组等高消耗场景"
+    },
+    "13900K": {
+      "name": "i9 13900K",
+      "cpuFreqHz": "⚡5.8Ghz",
+      "cpuZScore": "720-800分",
+      "info": "13代P核超频方案<br>适用于1.20+/模组/基岩/群组等高消耗场景"
+    },
+    "5900X": {
+      "name": "Ryzen 5900X",
+      "cpuFreqHz": "4.8Ghz",
+      "cpuZScore": "450-520分",
+      "info": "强劲单核性能<br>适用于1.18+/模组/基岩/群组等中高性能场景"
+    },
+    "EPYC7a23": {
+      "name": "🔥Epyc 7A23",
+      "cpuFreqHz": "⚡3.7+Ghz",
+      "cpuZScore": "450-500分",
+      "info": "Zen3高性价比服务器，追平5900X<br>适用于1.18+/模组/基岩/群组等中高性能场景"
+    },
+    "2666v3": {
+      "name": "E5 2666v3",
+      "cpuFreqHz": "3.4Ghz",
+      "cpuZScore": "350-390分",
+      "info": "中等性能，适合低版本纯净小服<br>适用于1.12.2及以下纯净服务器"
+    },
+    "P8259": {
+      "name": "Platinum 8259cl",
+      "cpuFreqHz": "⚡3.5Ghz",
+      "cpuZScore": "350-400分",
+      "info": "中高性能，中小服的性价比之选<br>适用于1.16+纯净服务器"
+    },
+    "P8275": {
+      "name": "🔥Platinum 8275cl",
+      "cpuFreqHz": "4.0Ghz",
+      "cpuZScore": "390-420分",
+      "info": "中高性能，中小服的性价比之选<br>适用于1.16+纯净服务器"
+    }
+  },
+  "ip_type": {
+    "us-la1": {
+      "": "普通IP (未附加防御)"
+    },
+    "us-la2": {
+      "": "普通IP (未附加防御)",
+      "home_ip": "家庭IP(外贸专用，支持TikTok/GPT)",
+      "us_ddosip": "300G+ 美国高防(+UDP拦截)"
+    },
+    "cn-hk1": {
+      "": "普通IP (未附加防御)",
+      "hk_ddosip": "300G+ 香港高防(封UDP)"
+    },
+    "cn-nb1": {
+      "": "100G 宁波电信普防",
+      "ipv6": "宁波 IPv6",
+      "nb_cmip": "20G 宁波移动普防",
+      "nb_cmddosip": "400G 宁波移动精品高防",
+      "nb_cuip": "100G 宁波联通高防",
+      "nb_ddosip": "100G 宁波精品高防(封UDP)",
+      "nb_cntcpip": "100G 宁波极品高防(封UDP+海外)",
+      "nb_bgpip": "10G 宁波BGP三线普防",
+      "nb_ddosip200": "200G 宁波电信高防(需定制)",
+      "nb_ddosip300": "300G 宁波电信高防(需定制)",
+      "nb_ddosip400": "400G 宁波电信高防(需定制)",
+      "nb_bgpddosip": "100G 宁波BGP高防(需定制)"
+    },
+    "cn-sy1": {
+      "": "200G 十堰电信防御",
+      "ipv6": "十堰 IPv6",
+      "sy_ddosip": "400G 十堰物理机高防",
+      "sy_bgpip": "十堰BGP普防"
+    },
+    "cn-sq1": {
+      "": "150G 京东云防御"
+    },
+    "cn-gz1": {
+      "gz_aliyunip": "阿里云IP",
+      "gz_txip": "腾讯云IP"
+    },
+    "cn-cq1": {
+      "": "20G 电信防御"
+    },
+    "cn-xy1": {
+      "": "200G 襄阳电信防御"
+    },
+    "cn-zj1": {
+      "": "200G 镇江BGP高防",
+      "zj_cnip": "200G 镇江BGP高防(封海外)"
+    },
+    "jp-tk1": {
+      "": "普通IP (未附加防御)",
+      "jp_ddosip": "300G+ 日本高防(封UDP)"
+    },
+    "cn-sz1": {
+      "": "20G 深圳防御",
+      "sz_ddosip": "200G 深圳高防",
+      "sz_txip": "腾讯多线BGP"
+    },
+    "cn-wz1": {
+      "": "100G 温州电信高防",
+      "wz_cmip": "100G 温州移动高防",
+      "wz_bgpddosip": "100G 温州BGP三线高防"
+    },
+    "cn-sx1": {
+      "": "50G 绍兴电信普防",
+      "sx_bgpip": "100G 绍兴BGP高防"
+    },
+    "kr-st1": {
+      "": "普通IP (未附加防御)",
+      "native": "本地原生IP",
+      "home_ip": "原生住宅IP(外贸专用，支持TikTok/GPT)(仅出网用)"
+    },
+    "de-ff1": {
+      "": "普通IP (未附加防御)",
+      "home_ip": "isp住宅IP(外贸专用，支持TikTok/GPT)"
+    }
+  }
+}
