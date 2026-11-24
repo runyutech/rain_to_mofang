@@ -352,7 +352,8 @@
     },
     "cn-gz1": {
       "gz_aliyunip": "阿里云IP",
-      "gz_txip": "腾讯云IP"
+      "gz_txip": "腾讯云IP",
+      "": "普通IP (未附加防御)"
     },
     "cn-cq1": {
       "": "20G 电信防御"
