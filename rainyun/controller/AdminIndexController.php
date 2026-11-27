@@ -518,6 +518,7 @@ class AdminIndexController extends PluginAdminBaseController
                 "url" => $siteUrl,
                 "pid" => $parentId,
                 "nav_type" => "2",
+                "relid" => "",
                 "menuid" => "1",
                 "lang" => $groupLang,
                 "menu_type" => "1",
